@@ -30,7 +30,7 @@ app.add_middleware(
 
 @app.get(f"{SUB_PATH}/")
 async def root():
-    return {"message": f"Hello {APP_VERSION}!"}
+    return {"message": f"Hello {APP_NAME}!"}
 
 
 @app.get(f"{SUB_PATH}/version")
@@ -44,8 +44,6 @@ if __name__ == "__main__":
     worker = os.getenv("WORKER", 4)
     app_port = os.getenv("APP_PORT", 8000)
     print(
-        "AZURE INTEGRATION APPLICATION ARE RUNNING WITH %s WORKER AT PORT %s.",
-        worker,
-        app_port,
+        f"AZURE INTEGRATION APPLICATION ARE RUNNING WITH {worker} WORKERS AT PORT {app_port}."
     )
     uvicorn.run("main:app", host="0.0.0.0", port=app_port, workers=worker, reload=False)
